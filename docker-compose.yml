@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  arch-vm:
+    build: .
+    container_name: arch-archlinux-vm
+    ports:
+      - "6080:6080"
+      - "5900:5900"
+    tty: true
+    shm_size: 512m

@@ -8,12 +8,15 @@ Server = https://mirror.umd.edu/archlinux/$repo/os/$arch
 EOF
 
 RUN pacman -Syu --disable-download-timeout --noconfirm \
-    sudo xorg-server-xvfb xorg-xauth xorg-fonts-misc xterm openbox x11vnc git python python-pip wget unzip \
+    sudo xorg-server-xvfb xorg-xauth xorg-fonts-misc xorg-xdpyinfo xterm x11vnc git python python-pip wget unzip \
     inetutils python-pyxdg python-numpy plasma \
     konsole kitty gnome-terminal xfce4-terminal alacritty terminator \
     neovim vim nano htop curl tree file man-db man-pages base-devel \
     networkmanager polkit ksshaskpass firefox \
+    ttf-dejavu ttf-liberation noto-fonts noto-fonts-emoji xdg-desktop-portal-gtk \
     && pacman -Scc --noconfirm
+
+RUN echo 'root:password' | chpasswd
 
 RUN git clone --depth 1 https://github.com/novnc/noVNC /opt/noVNC \
     && git clone --depth 1 https://github.com/novnc/websockify /opt/noVNC/utils/websockify
